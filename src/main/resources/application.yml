@@ -1,0 +1,41 @@
+server:
+  port: 8081
+application:
+  name: posts
+  version: 1.0
+  title: Posts
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  h2:
+    console:
+      enabled: true
+  application:
+    name: posts-microservice
+  datasource:
+    driverClassName: org.h2.Driver
+    initialization-mode: always
+    initialize: true
+    url: jdbc:h2:mem:mydb
+    username: sa
+    password: sa
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: none
+  cache:
+    type: caffeine
+    spec:
+      initialCapacity: 100
+      maximumSize: 500
+      expireAfterAccess: 600s
+logging:
+  level:
+    root: DEBUG
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
